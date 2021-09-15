@@ -8,13 +8,13 @@ pipeline {
 					sh '''
 						eksctl create cluster \
 						--name capstonecluster \
-						--version 1.21 \
+						--version 1.13 \
 						--nodegroup-name standard-workers \
 						--node-type t2.small \
 						--nodes 2 \
 						--nodes-min 1 \
 						--nodes-max 3 \
-						--node-ami auto-ssm \
+						--node-ami auto \
 						--region us-west-1 \
 						--zones us-west-1a \
 						--zones us-west-1b \
