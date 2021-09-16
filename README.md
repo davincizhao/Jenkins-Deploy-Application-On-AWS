@@ -2,7 +2,7 @@
 
 
 ## Step 1: Propose and Scope the Project
-- CI/CD tool platform: Jenkins,ansible,cloudformation,AWS
+- CI/CD tool platform: Jenkins,cloudformation,AWS
 - Deployment strategy: Blue/green deployment.
 - Container: Docker.
 - Application: Ngix
@@ -29,9 +29,13 @@ chown jenkins /var/run/docker.sock
 - Construct pipeline with GitHub repository.
 - Set up all the steps that your pipeline will include.
 - Configure a deployment pipeline.
-- nclude your Dockerfile/source code in the Git repository.
+- include Dockerfile/source code in the Git repository.
 - Include with Linting.
 ## Step 5: Test your pipeline
 - Perform builds on your pipeline.
 
-
+## Repo Structure
+There are Two branches [create_cluster] and [app_cicd]: 
+- one for create infrastructure(EKS,Nodegroups) in AWS, 
+- another for test code, build app deploy app to EKS,expose service.
+- prepare_jeniks_tools.sh, in create_cluster branch for prepare install jenkins and other relative tools, like docker,tidy..
