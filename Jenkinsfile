@@ -1,40 +1,94 @@
+
 pipeline {
 	agent any
 	stages {
-
-		stage('Infrastructure: Create k8s cluster in AWS') {
+		stage('Lint HTML') {
 			steps {
-				withAWS(region:'us-west-1', credentials:'aws_credential') {
+				sh 'tidy -q -e ./app_CI_CD_pipeline/*.html'
+			}
+		}
+		
+		stage('Build Docker Image') {
+			steps {
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
+					sh '''  cd ./app_CI_CD_pipeline
+						docker build -t davincizhao/capstone:$BUILD_ID .
+					'''
+				}
+			}
+		}
+
+		stage('Push Image To Dockerhub') {
+			steps {
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
-						eksctl create cluster \
-						--name capstonecluster \
-						--version 1.21 \
-						--nodegroup-name standard-workers \
-						--node-type t2.small \
-						--nodes 2 \
-						--nodes-min 1 \
-						--nodes-max 3 \
-						--node-ami auto \
-						--region us-west-1 \
-						--zones us-west-1a \
-						--zones us-west-1b \
-						--zones us-west-1c \
+						docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+						docker push davincizhao/capstone:$BUILD_ID
+						echo $BUILD_ID
+					'''
+				}
+			}
+		}
+		
+
+		stage('Set current kubectl kubeconfig') {
+			steps {
+				withAWS(region:'us-west-1', credentials:'jenkins') {
+					sh '''
+						kubectl config use-context arn:aws:eks:us-west-1: 
+					
 					'''
 				}
 			}
 		}
 
 		
-
-		stage('Configurature: Create config file of cluster') {
+		stage('Deploy blue container') {
 			steps {
 				withAWS(region:'us-west-1', credentials:'aws_credential') {
 					sh '''
-						aws eks --region us-west-1 update-kubeconfig --name capstonecluster
+						kubectl apply -f ./app_CI_CD_pipeline/blue-ctler.json
 					'''
 				}
 			}
 		}
+				
+                stage('Deploy green container') {
+                        steps {
+                                withAWS(region:'us-west-1', credentials:'aws_credential') {
+                                        sh '''
+                                                kubectl apply -f ./app_CI_CD_pipeline/green-ctler.json
+                                        '''
+                                }
+                        }
+                }
 
+		
+		stage('Create the service in the cluster, redirect to blue') {
+			steps {
+				withAWS(region:'us-west-1', credentials:'aws_credential') {
+					sh '''
+						kubectl apply -f ./app_CI_CD_pipeline/blue-svc.json
+					'''
+				}
+			}
+		}
+		stage('Wait user approve') {
+                        steps {
+                                input "Ready to redirect traffic to green?"
+                               }
+		
+	        }
+
+		stage('Create the service in the cluster, redirect to green') {
+			steps {
+				withAWS(region:'us-west-1', credentials:'aws_credential') {
+					sh '''
+						kubectl apply -f ./app_CI_CD_pipeline/green-svc.json
+					'''
+				}
+			}
+		}
 	}
+
 }
