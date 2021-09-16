@@ -12,7 +12,7 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''  
-						sudo docker build --file ./app_CI_CD_pipeline/Dockerfile -t davincizhao/capstone:$BUILD_ID .
+						  docker build --file ./app_CI_CD_pipeline/Dockerfile -t davincizhao/capstone:$BUILD_ID .
 					'''
 				}
 			}
@@ -22,9 +22,9 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
-						sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-						sudo docker push davincizhao/capstone:$BUILD_ID
-						echo $BUILD_ID
+						  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+						  docker push davincizhao/capstone:$BUILD_ID
+						  echo $BUILD_ID
 					'''
 				}
 			}
@@ -35,7 +35,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-1', credentials:'jenkins') {
 					sh '''
-						sudo kubectl config use-context arn:aws:eks:us-west-1:560967782130:cluster/capstonecluster 
+						  kubectl config use-context arn:aws:eks:us-west-1:560967782130:cluster/capstonecluster 
 					
 					'''
 				}
@@ -47,7 +47,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-1', credentials:'aws_credential') {
 					sh '''
-						sudo kubectl apply -f ./app_CI_CD_pipeline/blue-ctler.json
+						  kubectl apply -f ./app_CI_CD_pipeline/blue-ctler.json
 					'''
 				}
 			}
@@ -57,7 +57,7 @@ pipeline {
                         steps {
                                 withAWS(region:'us-west-1', credentials:'aws_credential') {
                                         sh '''
-                                                sudo kubectl apply -f ./app_CI_CD_pipeline/green-ctler.json
+                                                  kubectl apply -f ./app_CI_CD_pipeline/green-ctler.json
                                         '''
                                 }
                         }
@@ -68,7 +68,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-1', credentials:'aws_credential') {
 					sh '''
-						sudo kubectl apply -f ./app_CI_CD_pipeline/blue-svc.json
+						  kubectl apply -f ./app_CI_CD_pipeline/blue-svc.json
 					'''
 				}
 			}
@@ -84,7 +84,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-1', credentials:'aws_credential') {
 					sh '''
-						sudo kubectl apply -f ./app_CI_CD_pipeline/green-svc.json
+						  kubectl apply -f ./app_CI_CD_pipeline/green-svc.json
 					'''
 				}
 			}
