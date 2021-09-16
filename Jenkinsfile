@@ -35,13 +35,23 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-1', credentials:'aws_credential') {
 					sh '''
-						  kubectl config use-context arn:aws:eks:us-west-1:560967782130:cluster/capstonecluster 
+						  aws --region us-west-1 eks update-kubeconfig --name capstonecluster 
 					
 					'''
 				}
 			}
 		}
 
+		stage('test config') {
+			steps {
+				withAWS(region:'us-west-1', credentials:'aws_credential') {
+					sh '''
+						kubectl get svc 
+					
+					'''
+				}
+			}
+		}
 		
 		stage('Deploy blue container') {
 			steps {
