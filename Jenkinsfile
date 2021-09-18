@@ -52,6 +52,20 @@ pipeline {
 				}
 			}
 		}
+                stage('create k8s secret to pull my docker image') {
+                        steps {
+                                withAWS(region:'us-west-2', credentials:'aws_credential') {
+                                        sh '''
+                                                kubectl create secret docker-registry docker-hub \ 
+                                                       --docker-username=$DOCKER_USERNAME \ 
+                                                       --docker-password=$DOCKER_PASSWORD \ 
+                                                       --docker-server=docker.io
+
+                                        '''
+                                }
+                        }
+                }
+
 		
 		stage('Deploy blue container') {
 			steps {
