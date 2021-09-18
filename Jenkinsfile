@@ -54,13 +54,12 @@ pipeline {
 		}
                 stage('create k8s secret to pull my docker image') {
                         steps {
-                                withAWS(region:'us-west-2', credentials:'aws_credential') {
+                                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
                                         sh '''
-                                                kubectl create secret docker-registry docker-hub \ 
-                                                       --docker-username=$DOCKER_USERNAME \ 
-                                                       --docker-password=$DOCKER_PASSWORD \ 
-                                                       --docker-server=docker.io
-
+                                              kubectl create secret docker-registry docker-hub \
+                                              --docker-username=$DOCKER_USERNAME \
+                                              --docker-password=$DOCKER_PASSWORD \
+                                              --docker-server=docker.io
                                         '''
                                 }
                         }
