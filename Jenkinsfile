@@ -33,9 +33,9 @@ pipeline {
 
 		stage('Set current kubectl kubeconfig') {
 			steps {
-				withAWS(region:'us-west-1', credentials:'aws_credential') {
+				withAWS(region:'us-west-2', credentials:'aws_credential') {
 					sh '''
-						  aws --region us-west-1 eks update-kubeconfig --name capstonecluster 
+						  aws --region us-west-2 eks update-kubeconfig --name cap99 
 					
 					'''
 				}
@@ -44,7 +44,7 @@ pipeline {
 
 		stage('test config') {
 			steps {
-				withAWS(region:'us-west-1', credentials:'aws_credential') {
+				withAWS(region:'us-west-2', credentials:'aws_credential') {
 					sh '''
 						kubectl get svc 
 					
@@ -55,7 +55,7 @@ pipeline {
 		
 		stage('Deploy blue container') {
 			steps {
-				withAWS(region:'us-west-1', credentials:'aws_credential') {
+				withAWS(region:'us-west-2', credentials:'aws_credential') {
 					sh '''
 						  kubectl apply -f ./app_CI_CD_pipeline/blue-ctler.json
 					'''
@@ -65,7 +65,7 @@ pipeline {
 				
                 stage('Deploy green container') {
                         steps {
-                                withAWS(region:'us-west-1', credentials:'aws_credential') {
+                                withAWS(region:'us-west-2', credentials:'aws_credential') {
                                         sh '''
                                                   kubectl apply -f ./app_CI_CD_pipeline/green-ctler.json
                                         '''
@@ -76,7 +76,7 @@ pipeline {
 		
 		stage('Create the service in the cluster, redirect to blue') {
 			steps {
-				withAWS(region:'us-west-1', credentials:'aws_credential') {
+				withAWS(region:'us-west-2', credentials:'aws_credential') {
 					sh '''
 						  kubectl apply -f ./app_CI_CD_pipeline/blue-svc.json
 					'''
@@ -92,7 +92,7 @@ pipeline {
 
 		stage('Create the service in the cluster, redirect to green') {
 			steps {
-				withAWS(region:'us-west-1', credentials:'aws_credential') {
+				withAWS(region:'us-west-2', credentials:'aws_credential') {
 					sh '''
 						  kubectl apply -f ./app_CI_CD_pipeline/green-svc.json
 					'''
