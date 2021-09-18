@@ -52,18 +52,6 @@ pipeline {
 				}
 			}
 		}
-                stage('create k8s secret to pull my docker image') {
-                        steps {
-                                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
-                                        sh '''
-                                              kubectl create secret docker-registry docker-hub \
-                                              --docker-username=$DOCKER_USERNAME \
-                                              --docker-password=$DOCKER_PASSWORD \
-                                              --docker-server=docker.io
-                                        '''
-                                }
-                        }
-                }
 
 		
 		stage('Deploy blue container') {
