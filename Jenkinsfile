@@ -12,7 +12,7 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''  
-						  docker build --file ./app_CI_CD_pipeline/Dockerfile -t davincizhao/testcapstone:$BUILD_ID .
+						  docker build --file ./app_CI_CD_pipeline/Dockerfile -t davincizhao/testcapstone:$BUILD_ID -t davincizhao/testcapstone:latest  .
 					'''
 				}
 			}
@@ -23,7 +23,7 @@ pipeline {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
 						  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-						  docker push davincizhao/testcapstone:$BUILD_ID
+						  docker push davincizhao/testcapstone:latest
 						  echo $BUILD_ID
 					'''
 				}
