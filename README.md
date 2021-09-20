@@ -28,3 +28,6 @@ There are Two branches [create_cluster] and [app_cicd]:
 - Create user and add EKS permission into this user,save this credential in Jenkins, so that Jenkins can act as user to create EKS.
 - Create keypair for login tool-box server(Jenkins) EC2 in AWS.
 - Save dockerhub username and password in Jenkins, so that Jenkins can push docker image to dockerhub.
+
+## Screenshot of project
+![ss1_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss1_setup_jenkins.png)
