@@ -1,4 +1,5 @@
-# Capstone-cloud-deploy
+# Jenkins Deploy Application On AWS
+Using Jenkins(blue ocean) build pipeline and  AWS(Cloud platform) with CloudFormation, AWS CLI,kubectl,eksctl Docker,EKS(Kubenetes in AWS)
 
 
 ## Propose and Scope the Project
