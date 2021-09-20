@@ -21,5 +21,5 @@ Tools:
 ## Repo Structure
 There are Two branches [create_cluster] and [app_cicd]: 
 - [create_cluster](https://github.com/davincizhao/Capstone-cloud-deploy/tree/create_cluster) for create infrastructure(EKS,Nodegroups) in AWS, 
-- [app_cicd] for test code, build app deploy app to EKS,expose service.
+- [app_cicd](https://github.com/davincizhao/Capstone-cloud-deploy/tree/app_cicd) for test code, build app deploy app to EKS,expose service.
 - prepare_jeniks_tools.sh, in create_cluster branch for prepare install jenkins and other relative tools, like docker,tidy..
