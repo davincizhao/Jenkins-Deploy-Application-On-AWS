@@ -30,4 +30,50 @@ There are Two branches [create_cluster] and [app_cicd]:
 - Save dockerhub username and password in Jenkins, so that Jenkins can push docker image to dockerhub.
 
 ## Screenshot of project
+### ss1_setup_jenkins.png
 ![ss1_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss1_setup_jenkins.png)
+
+### ss2_setup_jenkins.png
+![ss2_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss2_setup_jenkins.png)
+
+### ss3_setup_jenkins.png
+![ss3_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss3_setup_jenkins.png)
+
+### ss4_setup_jenkins.png
+![ss4_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss4_setup_jenkins.png)
+
+### ss5_setup_jenkins.png
+![ss5_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss5_setup_jenkins.png)
+
+### ss6_setup_jenkins.png
+![ss6setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss6_setup_jenkins.png)
+
+### ss7_setup_jenkins.png
+![ss7_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss7_setup_jenkins.png)
+
+### ss8_setup_jenkins.png
+![ss8_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss8_setup_jenkins.png)
+
+### ss9_setup_jenkins.png
+![ss9_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss9_setup_jenkins.png)
+
+### ss10_setup_jenkins.png
+![ss10_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss10_setup_jenkins.png)
+
+### ss11_setup_jenkins.png
+![ss11_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss11_setup_jenkins.png)
+
+### ss12_setup_jenkins.png
+![ss12setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss12_setup_jenkins.png)
+
+### ss13_setup_jenkins.png
+![ss13_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss13_setup_jenkins.png)
+
+### ss14_setup_jenkins.png
+![ss14_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss14_setup_jenkins.png)
+
+### ss15_setup_jenkins.png
+![ss15_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss15_setup_jenkins.png)
+
+### ss16_setup_jenkins.png
+![ss16_setup_jenkins.png](https://github.com/davincizhao/Capstone-cloud-deploy/blob/master/screenshots/ss16_setup_jenkins.png)
