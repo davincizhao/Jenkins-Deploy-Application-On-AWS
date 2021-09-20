@@ -22,7 +22,7 @@
             "containers":[
                {
                   "name":"blue",
-                  "image":"davincizhao/testcapstone",
+                  "image":"davincizhao/testcapstone:blue",
                   "ports":[
                      {
                         "name":"http-server",
