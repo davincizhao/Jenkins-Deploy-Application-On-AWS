@@ -14,13 +14,13 @@ Using Jenkins(blue ocean) build pipeline and  AWS(Cloud platform) with CloudForm
 Tools:
 - Docker,Container platform
 - Jenkins,for CI/CD pipeline platform(JAVA base)
-- kubectl,for Kubernetes cluster command line
+- Kubectl,for Kubernetes cluster command line
 - eksctl,for AWS Elastic Kubernetes Services command line
 - awscli,for AWS  command line
 .
 
 ## Repo Structure
-There are Two branches [create_cluster] and [app_cicd]: 
+There are Two branches **create_cluster** and **app_cicd**: 
 - [create_cluster](https://github.com/davincizhao/Capstone-cloud-deploy/tree/create_cluster) for create infrastructure(EKS,Nodegroups) in AWS, 
 - [app_cicd](https://github.com/davincizhao/Capstone-cloud-deploy/tree/app_cicd) for test code, build app deploy app to EKS,expose service.
 - prepare_jeniks_tools.sh, in [create_cluster] branch for prepare install jenkins and other relative tools, like docker,tidy into Tool-box server
